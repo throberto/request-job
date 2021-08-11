@@ -1,0 +1,36 @@
+{
+  "name": "request-job",
+  "version": "1.0.0",
+  "main": "server.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "tsnd --respawn --transpile-only src/server",
+    "start": "node dist/server",
+    "clean": "rm -rf dist",
+    "build": "yarn clean && yarn generate && tsc",
+    "generate": "yarn generate:prisma && yarn generate:nexus",
+    "generate:prisma": "prisma generate",
+    "generate:nexus": "ts-node --transpile-only src/schema"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "dependencies": {
+    "@prisma/client": "^2.29.0",
+    "apollo-server": "^3.1.2",
+    "graphql": "^15.5.1",
+    "graphql-scalars": "^1.10.0",
+    "nexus": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.4.13",
+    "jest": "^27.0.6",
+    "prisma": "^2.29.0",
+    "ts-jest": "^27.0.4",
+    "ts-node": "^10.2.0",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.3.5"
+  }
+}
