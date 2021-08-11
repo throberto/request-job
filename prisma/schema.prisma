@@ -18,7 +18,6 @@ model User {
 model Department {
   id        String     @id @default(dbgenerated()) @map("_id") @db.ObjectId
   name      String
-  jobs      Job[]
   users     User[]
   customers Customer[]
 
@@ -36,13 +35,11 @@ model Customer {
 }
 
 model Job {
-  id           String     @id @default(dbgenerated()) @map("_id") @db.ObjectId
-  detail       String
-  status       JobStatus? @default(OPEN)
-  customerId   String     @map("customer_id") @db.ObjectId
-  departmentId String     @map("department_id") @db.ObjectId
-  department   Department @relation(fields: [departmentId], references: [id])
-  customer     Customer   @relation(fields: [customerId], references: [id])
+  id         String     @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  detail     String
+  status     JobStatus? @default(OPEN)
+  customerId String     @map("customer_id") @db.ObjectId
+  customer   Customer   @relation(fields: [customerId], references: [id])
 
   @@map("job")
 }

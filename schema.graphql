@@ -2,6 +2,51 @@
 ### Do not make changes to this file directly
 
 
+type Customer {
+  department: Department
+  id: ID!
+  name: String!
+}
+
+input CustomerCreateInput {
+  departmentId: ID!
+  name: String!
+}
+
+type Department {
+  id: ID!
+  name: String!
+}
+
+input DepartmentCreateInput {
+  name: String!
+}
+
+type Job {
+  customer: Customer
+  detail: String!
+  id: ID!
+  status: JobStatusEnum!
+}
+
+input JobCreateInput {
+  customerId: ID!
+  detail: String!
+}
+
+enum JobStatusEnum {
+  CLOSED
+  OPEN
+}
+
+type Mutation {
+  createCustomer(data: CustomerCreateInput!): Customer!
+  createDepartment(data: DepartmentCreateInput!): Department!
+  createJob(data: JobCreateInput!): Job!
+}
+
 type Query {
-  ok: Boolean!
+  allCustomers: [Customer!]
+  allDepartments: [Department!]
+  allJobs: [Job!]
 }
